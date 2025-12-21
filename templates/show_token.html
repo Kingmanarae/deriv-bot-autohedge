@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Deriv Token</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0e0e0e;
+            color: #c2c2c2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #151515;
+            border: 1px solid #2e2e2e;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4bb4b4;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .success-icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4bb4b4;
+            margin-bottom: 10px;
+        }
+        .token-box {
+            background: #2e2e2e;
+            border: 1px solid #3e3e3e;
+            border-radius: 4px;
+            padding: 15px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 12px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .copy-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff444f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background: #e63946;
+        }
+        .copy-btn.copied {
+            background: #4bb4b4;
+        }
+        .instructions {
+            background: #1a1a2e;
+            border: 1px solid #4bb4b4;
+            border-radius: 4px;
+            padding: 15px;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-top: 25px;
+        }
+        .instructions strong {
+            color: #4bb4b4;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        .account-info {
+            background: #2e2e2e;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">✓</div>
+        <div class="logo">Connected Successfully!</div>
+        <div class="subtitle">Copy your token below</div>
+
+        {% if account %}
+        <div class="account-info">
+            <strong>Account:</strong> {{ account }}
+        </div>
+        {% endif %}
+
+        <div class="section">
+            <div class="section-title">🔑 Your Real Account Token:</div>
+            <div class="token-box" id="realToken">{{ token }}</div>
+            <button class="copy-btn" onclick="copyToken('realToken', this)">
+                📋 Copy Real Token
+            </button>
+        </div>
+
+        {% if demo_token %}
+        <div class="section">
+            <div class="section-title">🎮 Your Demo Account Token:</div>
+            <div class="token-box" id="demoToken">{{ demo_token }}</div>
+            <button class="copy-btn" onclick="copyToken('demoToken', this)">
+                📋 Copy Demo Token
+            </button>
+        </div>
+        {% endif %}
+
+        <div class="instructions">
+            <strong>📋 Next Steps:</strong>
+            <ol>
+                <li>Copy the token above (click the button)</li>
+                <li>Open your Deriv Bot on <code>localhost:3000</code></li>
+                <li>Paste the token in the login page</li>
+                <li>Start trading!</li>
+            </ol>
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #2e2e2e;">
+                <strong>⚠️ Security:</strong> Keep this token private! Don't share it with anyone.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToken(elementId, button) {
+            const tokenElement = document.getElementById(elementId);
+            const token = tokenElement.textContent;
+            
+            navigator.clipboard.writeText(token).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy. Please select and copy manually.');
+            });
+        }
+    </script>
+</body>
+</html>

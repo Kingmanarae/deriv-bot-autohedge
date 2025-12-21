@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Deriv Bot v3</title>
+    <title>Login - Deriv OAuth</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -29,11 +29,6 @@
             font-size: 36px;
             font-weight: bold;
             color: #ff444f;
-            margin-bottom: 5px;
-        }
-        .version {
-            color: #666;
-            font-size: 12px;
             margin-bottom: 10px;
         }
         .subtitle {
@@ -64,46 +59,26 @@
             border-radius: 4px;
             font-size: 13px;
             text-align: left;
-            line-height: 1.8;
         }
         .info-box strong { color: #4bb4b4; }
-        .feature-list {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 15px;
-        }
-        .feature-list li {
-            padding: 8px 0;
-            color: #888;
-        }
-        .feature-list li::before {
-            content: "✓ ";
-            color: #4bb4b4;
-            font-weight: bold;
-            margin-right: 8px;
-        }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="logo">Deriv Bot</div>
-        <div class="version">v3.0 - OAuth Edition</div>
-        <div class="subtitle">Auto Hedging with Anti-Martingale</div>
+        <div class="logo">🔐 Deriv OAuth</div>
+        <div class="subtitle">Get your trading token</div>
         
         <a href="{{ oauth_url }}" class="login-btn">
             Connect Deriv Account
         </a>
 
         <div class="info-box">
-            <strong>🚀 New in v3:</strong>
-            <ul class="feature-list">
-                <li>Anti-Martingale recovery system (30%)</li>
-                <li>Smart stop on 3 consecutive losses</li>
-                <li>Separate Even/Odd contract tracking</li>
-                <li>Enhanced UI with tabs (Charts/Transactions/Logs)</li>
-                <li>Real-time balance updates</li>
-                <li>Full OAuth with all API permissions</li>
-            </ul>
+            <strong>How it works:</strong><br><br>
+            1. Click the button above<br>
+            2. Login with your Deriv credentials<br>
+            3. Authorize the application<br>
+            4. Copy your token<br>
+            5. Use it in your bot
         </div>
     </div>
 </body>
